@@ -1,0 +1,6 @@
+﻿services:
+  dashboardcore:
+    image: dashboardcore
+    build:
+      context: .
+      dockerfile: DashboardCore/Dockerfile
