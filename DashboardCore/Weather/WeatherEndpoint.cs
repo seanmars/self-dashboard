@@ -1,20 +1,20 @@
 using DashboardCore.Extensions;
 using FastEndpoints;
 
-namespace DashboardCore.Bookmark;
+namespace DashboardCore.Weather;
 
-public class BookmarkEndpoint : HtmlEndpointWithoutRequest<EmptyResponse>
+public class WeatherEndpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 {
     private readonly string _template;
 
-    public BookmarkEndpoint()
+    public WeatherEndpoint()
     {
-        _template = File.ReadAllText("assets/templates/bookmark.liquid");
+        _template = File.ReadAllText("assets/templates/weather.liquid");
     }
 
     public override void Configure()
     {
-        Get("/api/bookmark");
+        Get("/api/weather");
         AllowAnonymous();
     }
 

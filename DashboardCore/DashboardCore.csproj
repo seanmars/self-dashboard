@@ -8,23 +8,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FastEndpoints" Version="5.25.0" />
-        <PackageReference Include="FastEndpoints.Security" Version="5.25.0" />
+        <PackageReference Include="FastEndpoints" Version="5.25.0"/>
+        <PackageReference Include="FastEndpoints.Security" Version="5.25.0"/>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4"/>
+        <PackageReference Include="Scriban" Version="5.10.0"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Calendar\" />
-      <Folder Include="Stock\" />
-      <Folder Include="Weather\" />
-      <Folder Include="WebsiteMonitor\" />
+        <None Update="assets\templates\*.liquid">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

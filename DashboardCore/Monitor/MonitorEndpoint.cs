@@ -1,20 +1,20 @@
 using DashboardCore.Extensions;
 using FastEndpoints;
 
-namespace DashboardCore.Bookmark;
+namespace DashboardCore.Monitor;
 
-public class BookmarkEndpoint : HtmlEndpointWithoutRequest<EmptyResponse>
+public class MonitorEndpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 {
     private readonly string _template;
 
-    public BookmarkEndpoint()
+    public MonitorEndpoint()
     {
-        _template = File.ReadAllText("assets/templates/bookmark.liquid");
+        _template = File.ReadAllText("assets/templates/monitor.liquid");
     }
 
     public override void Configure()
     {
-        Get("/api/bookmark");
+        Get("/api/monitor");
         AllowAnonymous();
     }
 
