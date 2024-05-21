@@ -3,11 +3,11 @@ using FastEndpoints;
 
 namespace DashboardCore.Stock;
 
-public class StockEndpoint : HtmlEndpointWithoutRequest<EmptyResponse>
+public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 {
     private readonly string _template;
 
-    public StockEndpoint()
+    public Endpoint()
     {
         _template = File.ReadAllText("assets/templates/stock.liquid");
     }

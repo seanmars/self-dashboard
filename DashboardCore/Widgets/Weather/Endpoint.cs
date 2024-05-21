@@ -1,20 +1,20 @@
 using DashboardCore.Extensions;
 using FastEndpoints;
 
-namespace DashboardCore.Monitor;
+namespace DashboardCore.Weather;
 
-public class MonitorEndpoint : HtmlEndpointWithoutRequest<EmptyResponse>
+public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 {
     private readonly string _template;
 
-    public MonitorEndpoint()
+    public Endpoint()
     {
-        _template = File.ReadAllText("assets/templates/monitor.liquid");
+        _template = File.ReadAllText("assets/templates/weather.liquid");
     }
 
     public override void Configure()
     {
-        Get("/api/monitor");
+        Get("/api/weather");
         AllowAnonymous();
     }
 

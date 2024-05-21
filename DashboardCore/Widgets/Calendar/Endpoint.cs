@@ -1,20 +1,20 @@
 using DashboardCore.Extensions;
 using FastEndpoints;
 
-namespace DashboardCore.Bookmark;
+namespace DashboardCore.Calendar;
 
-public class BookmarkEndpoint : HtmlEndpointWithoutRequest<EmptyResponse>
+public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 {
     private readonly string _template;
 
-    public BookmarkEndpoint()
+    public Endpoint()
     {
-        _template = File.ReadAllText("assets/templates/bookmark.liquid");
+        _template = File.ReadAllText("assets/templates/calendar.liquid");
     }
-
+    
     public override void Configure()
     {
-        Get("/api/bookmark");
+        Get("/api/calendar");
         AllowAnonymous();
     }
 
