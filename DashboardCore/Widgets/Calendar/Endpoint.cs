@@ -1,7 +1,7 @@
 using DashboardCore.Extensions;
 using FastEndpoints;
 
-namespace DashboardCore.Calendar;
+namespace DashboardCore.Widgets.Calendar;
 
 public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 {

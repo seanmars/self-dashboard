@@ -1,9 +1,24 @@
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*"
+  "widgets": {
+    "bookmarks": [
+      {
+        "name": "Google",
+        "url": "https://www.google.com"
+      },
+      {
+        "name": "Yahoo!",
+        "url": "https://www.yahoo.com"
+      }
+    ],
+    "monitors": [
+      {
+        "name": "Google",
+        "url": "https://www.google.com"
+      },
+      {
+        "name": "Yahoo!",
+        "url": "https://www.yahoo.com"
+      }
+    ]
+  }
 }

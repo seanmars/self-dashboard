@@ -1,7 +1,7 @@
 using DashboardCore.Extensions;
 using FastEndpoints;
 
-namespace DashboardCore.Weather;
+namespace DashboardCore.Widgets.Weather;
 
 public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 {

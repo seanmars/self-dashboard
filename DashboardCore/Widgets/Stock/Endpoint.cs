@@ -1,7 +1,7 @@
 using DashboardCore.Extensions;
 using FastEndpoints;
 
-namespace DashboardCore.Stock;
+namespace DashboardCore.Widgets.Stock;
 
 public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 {

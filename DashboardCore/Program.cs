@@ -1,8 +1,15 @@
+using DashboardCore.Widgets;
 using FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.AddConsole()
+    .SetMinimumLevel(builder.Environment.IsDevelopment() ? LogLevel.Debug : LogLevel.Warning);
+
+builder.Configuration.AddEnvironmentVariables();
+
 // Add services to the container.
+builder.Services.AddWidgets();
 builder.Services.AddFastEndpoints();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -19,6 +26,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseFastEndpoints();
 
 app.Run();
