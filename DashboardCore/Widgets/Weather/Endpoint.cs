@@ -9,7 +9,7 @@ public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 
     public Endpoint()
     {
-        _template = File.ReadAllText("assets/templates/weather.liquid");
+        _template = File.ReadAllText("templates/widgets/weather.hbs");
     }
 
     public override void Configure()

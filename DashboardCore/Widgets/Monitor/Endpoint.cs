@@ -14,7 +14,7 @@ public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
     {
         _logger = logger;
         _feeder = feeder;
-        _template = File.ReadAllText("assets/templates/monitor.liquid");
+        _template = File.ReadAllText("templates/widgets/monitor.hbs");
     }
 
     public override void Configure()

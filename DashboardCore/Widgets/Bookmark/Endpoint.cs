@@ -1,4 +1,5 @@
 using DashboardCore.Extensions;
+using DashboardCore.Helper;
 using FastEndpoints;
 
 namespace DashboardCore.Widgets.Bookmark;
@@ -13,8 +14,8 @@ public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
     {
         _logger = logger;
         _feeder = feeder;
-        
-        _template = File.ReadAllText("assets/templates/bookmark.liquid");
+
+        _template = File.ReadAllText("templates/widgets/bookmark.hbs");
     }
 
     public override void Configure()
@@ -27,11 +28,10 @@ public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
     {
         _logger.LogInformation("Bookmark endpoint called");
 
-        await Task.CompletedTask;
+        var tmp = new TemplateProvider();
+        
+        var html = tmp.Render("bookmark", new { Title = "Bookmark", Content = "Bookmark content" });
 
-        var html = _template;
-
-        await SendResultAsync(Results.Ok(_feeder.GetBookmarks()));
-        // await SendHtmlAsync(html, cancellation: ct);
+        await SendHtmlAsync(html, cancellation: ct);
     }
 }

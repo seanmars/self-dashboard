@@ -9,7 +9,7 @@ public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 
     public Endpoint()
     {
-        _template = File.ReadAllText("assets/templates/calendar.liquid");
+        _template = File.ReadAllText("templates/widgets/calendar.hbs");
     }
     
     public override void Configure()
