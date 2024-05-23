@@ -8,14 +8,13 @@ public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 {
     private readonly ILogger<Endpoint> _logger;
     private readonly Feeder _feeder;
-    private readonly string _template;
+    private readonly TemplateProvider _template;
 
-    public Endpoint(ILogger<Endpoint> logger, Feeder feeder)
+    public Endpoint(ILogger<Endpoint> logger, Feeder feeder, TemplateProvider templateProvider)
     {
         _logger = logger;
         _feeder = feeder;
-
-        _template = File.ReadAllText("templates/widgets/bookmark.hbs");
+        _template = templateProvider;
     }
 
     public override void Configure()
@@ -26,12 +25,22 @@ public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        _logger.LogInformation("Bookmark endpoint called");
+        var bookmarks = _feeder.GetData();
+        if (bookmarks is null)
+        {
+            await SendHtmlAsync(_template.Render("error",
+                new
+                {
+                    Message = "Failed to get bookmarks"
+                }), cancellation: ct);
+            return;
+        }
 
-        var tmp = new TemplateProvider();
-        
-        var html = tmp.Render("bookmark", new { Title = "Bookmark", Content = "Bookmark content" });
-
-        await SendHtmlAsync(html, cancellation: ct);
+        await SendHtmlAsync(_template.Render("bookmark",
+            new
+            {
+                Title = "Bookmark",
+                Content = "Bookmark content"
+            }), cancellation: ct);
     }
 }

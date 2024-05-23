@@ -11,7 +11,7 @@ public class Feeder
         _settingManager = settingManager;
     }
 
-    public List<Model>? GetBookmarks()
+    public List<Model>? GetData()
     {
         try
         {

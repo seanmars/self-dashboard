@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using HandlebarsDotNet;
 
 namespace DashboardCore.Helper;
@@ -6,6 +7,11 @@ public class TemplateProvider
 {
     private readonly IHandlebars _handlebars;
 
+    [ThreadStatic]
+    private static ConcurrentDictionary<string, string>? _templates;
+
+    private static ConcurrentDictionary<string, string> Templates => _templates ??= new();
+
     public TemplateProvider()
     {
         _handlebars = Handlebars.Create();
@@ -13,19 +19,32 @@ public class TemplateProvider
         Init();
     }
 
-    private void Init()
+    private string GetHandlebar(string name, string? subFolder = null)
     {
-        _handlebars.RegisterTemplate("layout", File.ReadAllText("templates/layout.hbs"));
+        if (Templates.TryGetValue(name, out var template))
+        {
+            return template;
+        }
+
+        var path = subFolder is null
+            ? $"templates/{name}.hbs"
+            : $"templates/{subFolder}/{name}.hbs";
+
+        var content = File.ReadAllText(path);
+
+        Templates.TryAdd(name, content);
+
+        return content;
     }
 
-    public string GetTemplate(string name)
+    private void Init()
     {
-        return File.ReadAllText($"templates/widgets/{name}.hbs");
+        _handlebars.RegisterTemplate("layout", GetHandlebar("layout"));
     }
 
     public string Render(string template, object data)
     {
-        var content = GetTemplate(template);
+        var content = GetHandlebar(template, "widgets");
         return _handlebars.Compile(content)(data);
     }
 }

@@ -1,7 +1,9 @@
-namespace DashboardCore.Widgets.Monitor;
+namespace DashboardCore.Widgets.Stock;
 
 public class Feeder
 {
+    private const string Key = "widgets:stock";
+
     private readonly ILogger<Feeder> _logger;
     private readonly SettingManager _settingManager;
 
@@ -11,16 +13,16 @@ public class Feeder
         _settingManager = settingManager;
     }
 
-    public List<Model>? GetData()
+    public void GetData()
     {
         try
         {
-            return _settingManager.Get<List<Model>>("widgets:monitors");
+            var model = _settingManager.Get<Model>(Key);
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Failed to get monitors");
-            return default;
+            _logger.LogError(e, "Failed to get stock");
+            return;
         }
     }
 }

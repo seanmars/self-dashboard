@@ -1,5 +1,9 @@
+using DashboardCore.Helper;
 using DashboardCore.Widgets.Bookmark;
+using DashboardCore.Widgets.Calendar;
 using DashboardCore.Widgets.Monitor;
+using DashboardCore.Widgets.Stock;
+using DashboardCore.Widgets.Weather;
 
 namespace DashboardCore.Widgets;
 
@@ -9,7 +13,11 @@ public static class WidgetServiceExtension
     {
         return service
             .AddSingleton<SettingManager>()
+            .AddSingleton<TemplateProvider>()
+            .AddBookmarkWidget()
+            .AddCalendarWidget()
             .AddMonitorWidget()
-            .AddBookmarkWidget();
+            .AddStockWidget()
+            .AddWeatherWidget();
     }
 }

@@ -29,7 +29,7 @@ public class Endpoint : HtmlEndpointWithoutRequest<EmptyResponse>
 
         var html = _template;
 
-        var monitors = _feeder.GetMonitors();
+        var monitors = _feeder.GetData();
         _logger.LogDebug("{Json}", JsonSerializer.Serialize(monitors));
 
         await SendHtmlAsync(html, cancellation: ct);
